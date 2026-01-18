@@ -6,69 +6,72 @@
     <title>לימוד טעמים - פרשת שמיני</title>
     <style>
         :root { --p: #5d4037; --bg: #fdfaf6; }
-        body { font-family: sans-serif; background: var(--bg); margin: 0; padding: 15px; text-align: center; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; border-top: 8px solid var(--p); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .controls { position: sticky; top: 10px; background: white; padding: 10px; z-index: 10; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px; }
-        .pasuk { font-size: 22px; line-height: 2; padding: 12px; cursor: pointer; border-bottom: 1px solid #eee; text-align: right; }
+        body { font-family: 'SBL Hebrew', 'Times New Roman', serif; background: var(--bg); margin: 0; padding: 15px; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 25px; border-radius: 10px; border-top: 8px solid var(--p); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: var(--p); text-align: center; }
+        .controls { position: sticky; top: 10px; background: white; padding: 10px; z-index: 10; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: center; gap: 10px; }
+        .pasuk { font-size: 24px; line-height: 2.2; padding: 12px; cursor: pointer; border-bottom: 1px solid #eee; text-align: right; }
         .playing { background: #fff9c4 !important; border-right: 5px solid var(--p); font-weight: bold; }
-        button { padding: 8px 15px; background: var(--p); color: white; border: none; border-radius: 4px; font-weight: bold; margin: 5px; }
+        button { padding: 10px 20px; background: var(--p); color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        .num { font-size: 0.7em; color: #999; margin-left: 10px; }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>פרשת שמיני</h1>
+    <h2>לימוד קריאה - עליות שישי ושביעי</h2>
     <div class="controls">
         <button onclick="playRange(1, 47)">▶ נגן הכל</button>
         <button style="background:#c62828" onclick="stopAll()">הפסק</button>
     </div>
     <div id="list">
-        <div class="pasuk" id="p1" onclick="playSingle(1)">[א] וַיְדַבֵּ֧ר יְהוָ֛ה אֶל־מֹשֶׁ֥ה וְאֶֽל־אַהֲרֹ֖ן לֵאמֹ֥ר אֲלֵהֶֽם׃</div>
-        <div class="pasuk" id="p2" onclick="playSingle(2)">[ב] דַּבְּר֛וּ אֶל־בְּנֵ֥י יִשְׂרָאֵ֖ל לֵאמֹ֑ר זֹ֤את הַֽחַיָּה֙ אֲשֶׁ֣ר תֹּאכְל֔וּ מִכׇּל־הַבְּהֵמָ֖ה אֲשֶׁ֥ר עַל־הָאָֽרֶץ׃</div>
-        <div class="pasuk" id="p3" onclick="playSingle(3)">[ג] כֹּ֣ל ׀ מַפְרֶ֣סֶת פַּרְסָ֗ה וְשֹׁסַ֤עַת שֶׁ֙סַע֙ פְּרָסֹ֔ת מַעֲלַ֥ת גֵּרָ֖ה בַּבְּהֵמָ֑ה אֹתָ֖הּ תֹּאכֵֽלוּ׃</div>
-        <div class="pasuk" id="p4" onclick="playSingle(4)">[ד] אַ֤ךְ אֶת־זֶה֙ לֹ֣א תֹֽאכְל֔וּ מִֽמַּעֲלֵי֙ הַגֵּרָ֔ה וּמִמַּפְרִסֵ֖י הַפַּרְסָ֑ה אֶֽת־הַ֠גָּמָ֠ל כִּֽי־מַעֲלֵ֨ה גֵרָ֜ה ה֗וּא וּפַּרְסָה֙ אֵינֶ֣נּוּ מַפְרִ֔יס טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p5" onclick="playSingle(5)">[ה] וְאֶת־הַשָּׁפָ֗ן כִּֽי־מַעֲלֵ֤ה גֵרָה֙ ה֔וּא וּפַרְסָ֖ה לֹ֣א יַפְרִ֑יס טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p6" onclick="playSingle(6)">[ו] וְאֶת־הָאַרְנֶ֗בֶת כִּֽי־מַעֲלַ֤ת גֵּרָה֙ הִ֔יא וּפַרְסָה֙ אֵינֶ֣נּוּ מַפְרִ֔יסָה טְמֵאָ֥ה הִ֖יא לָכֶֽם׃</div>
-        <div class="pasuk" id="p7" onclick="playSingle(7)">[ז] וְאֶת־הַ֠חֲזִ֠יר כִּֽי־מַפְרִ֨יס פַּרְסָ֜ה ה֗וּא וְשֹׁסַ֥ע שֶׁ֙סַע֙ פַּרְסָ֔ה וְה֖וּא גֵּרָה֙ לֹֽא־יִגָּ֑ר טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p8" onclick="playSingle(8)">[ח] מִבְּשָׂרָם֙ לֹ֣א תֹאכֵ֔לוּ וּבְנִבְלָתָ֖ם לֹ֣א תִגָּ֑עוּ טְמֵאִ֥ים הֵ֖מָּה לָכֶֽם׃</div>
-        <div class="pasuk" id="p9" onclick="playSingle(9)">[ט] אֶת־זֶה֙ תֹּאכְל֔וּ מִכֹּ֖ל אֲשֶׁ֣ר בַּמָּ֑יִם כֹּ֣ל אֲשֶׁר־לוֹ֩ סְנַפִּ֨יר וְקַשְׂקֶ֜שֶׂת בַּמַּ֗יִם בַּיַּמִּ֛ים וּבַנְּחָלִ֖ים אֹתָ֥ם תֹּאכֵֽלוּ׃</div>
-        <div class="pasuk" id="p10" onclick="playSingle(10)">[י] וְכֹל֩ אֲשֶׁ֨ר אֵֽין־ל֜וֹ סְנַפִּ֣יר וְקַשְׂקֶ֗שֶׂת בַּיַּמִּים֙ וּבַנְּחָלִ֔ים מִכֹּל֙ שֶׁ֣רֶץ הַמַּ֔יִם וּמִכֹּ֛ל נֶ֥פֶשׁ הַחַיָּ֖ה אֲשֶׁר בַּמָּ֑יִם שֶׁ֥קֶץ הֵ֖ם לָכֶֽם׃</div>
-        <div class="pasuk" id="p11" onclick="playSingle(11)">[יא] וְשֶׁ֖קֶץ יִהְי֣וּ לָכֶ֑ם מִבְּשָׂרָם֙ לֹ֣א תֹאכֵ֔לוּ וְאֶת־נִבְלָתָ֖ם תְּשַׁקֵּֽצוּ׃</div>
-        <div class="pasuk" id="p12" onclick="playSingle(12)">[יב] כֹּ֣ל אֲשֶׁר֩ אֵֽין־ל֨וֹ סְנַפִּ֧יר וְקַשְׂקֶ֛שֶׂת בַּמָּ֑יִם שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p13" onclick="playSingle(13)">[יג] וְאֶת־אֵ֙לֶּה֙ תְּשַׁקְּצ֣וּ מִן־הָע֔וֹף לֹ֥א יֵאָכְל֖וּ שֶׁ֣קֶץ הֵ֑ם אֶת־הַנֶּ֙שֶׁר֙ וְאֶת־הַפֶּ֔רֶס וְאֵ֖ת הָעׇזְנִיָּֽה׃</div>
-        <div class="pasuk" id="p14" onclick="playSingle(14)">[יד] וְאֶת־הַדַּאָ֔ה וְאֶת־הָאַיָּ֖ה לְמִינָֽהּ׃</div>
-        <div class="pasuk" id="p15" onclick="playSingle(15)">[טו] אֵ֥ת כׇּל־עֹרֵ֖ב לְמִינֽוֹ׃</div>
-        <div class="pasuk" id="p16" onclick="playSingle(16)">[טז] וְאֵת֙ בַּ֣ת הַיַּעֲנָ֔ה וְאֶת־הַתַּחְמָ֖ס וְאֶת־הַשָּׁ֑חַף וְאֶת־הַנֵּ֖ץ לְמִינֵֽהוּ׃</div>
-        <div class="pasuk" id="p17" onclick="playSingle(17)">[יז] וְאֶת־הַכּ֥וֹס וְאֶת־הַשָּׁלָ֖ךְ וְאֶת־הַיַּנְשֽׁוּף׃</div>
-        <div class="pasuk" id="p18" onclick="playSingle(18)">[יח] וְאֶת־הַתִּנְשֶׁ֥מֶת וְאֶת־הקָּאָ֖ת וְאֶת־הָרָחָֽם׃</div>
-        <div class="pasuk" id="p19" onclick="playSingle(19)">[יט] וְאֵת֙ הַחֲסִידָ֔ה הָאֲנָפָ֖ה לְמִינָ֑הּ וְאֶת־הַדּוּכִיפַ֖ת וְאֶת־הָעֲטַלֵּֽף׃</div>
-        <div class="pasuk" id="p20" onclick="playSingle(20)">[כ] כֹּ֚ל שֶׁ֣רֶץ הָע֔וֹף הַהֹלֵ֖ךְ עַל־אַרְבַּ֑ע שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p21" onclick="playSingle(21)">[כא] אַ֤ךְ אֶת־זֶה֙ תֹּאכְל֔וּ מִכֹּל֙ שֶׁ֣רֶץ הָע֔וֹף הַהֹלֵ֖ךְ עַל־אַרְבַּ֑ע אֲשֶׁר־לוֹ קְרָעַ֙יִם֙ מִמַּ֣עַל לְרַגְלָ֔יו לְנַתֵּ֥ר בָּהֵ֖ן עַל־הָאָֽרֶץ׃</div>
-        <div class="pasuk" id="p22" onclick="playSingle(22)">[כב] אֶת־אֵ֤לֶּה מֵהֶם֙ תֹּאכֵ֔לוּ אֶת־הָאַרְבֶּ֣ה לְמִינ֔וֹ וְאֶת־הַסׇּלְעָ֖ם לְמִינֵ֑הוּ וְאֶת־הַחַרְגֹּ֣ל לְמִינֵהוּ וְאֶת־הֶחָגָ֖ב לְמִינֵֽהוּ׃</div>
-        <div class="pasuk" id="p23" onclick="playSingle(23)">[כג] וְכֹל֙ שֶׁ֣רֶץ הָע֔וֹף אֲשֶׁר־ל֖וֹ אַרְבַּ֣ע רַגְלָ֑יִם שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p24" onclick="playSingle(24)">[כד] וּלְאֵ֖לֶּה תִּטַּמָּ֑אוּ כׇּל־הַנֹּגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p25" onclick="playSingle(25)">[כה] וְכׇל־הַנֹּשֵׂ֖א מִנִּבְלָתָ֑ם יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p26" onclick="playSingle(26)">[כו] לְכׇל־הַבְּהֵמָ֡ה אֲשֶׁר֩ הִ֨יא מַפְרֶ֜סֶת פַּרְסָ֨ה וְשֶׁ֜סַע אֵינֶ֣נָּה שֹׁסַ֗עַת וְגֵרָה֙ אֵינֶ֣נּה מַעֲלָ֔ה טְמֵאִ֥ים הֵ֖מָּה לָכֶ֑ם כׇּל־הַנֹּגֵ֥עַ בָּהֶ֖ם יִטְמָֽא׃</div>
-        <div class="pasuk" id="p27" onclick="playSingle(27)">[כז] וְכֹ֣ל ׀ הוֹלֵ֣ךְ עַל־כַּפָּ֗יו בְּכׇל־הַחַיָּה֙ הַהֹלֶ֣כֶת עַל־אַרְבַּ֔ע טְמֵאִ֥ים הֵ֖מָּה לָכֶ֑ם כׇּל־הַנֹּגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p28" onclick="playSingle(28)">[כח] וְהַנֹּשֵׂא֙ אֶת־נִבְלָתָ֔ם יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָ֑רֶב טְמֵאִ֥ים הֵ֖מָּה לָכֶֽם׃</div>
-        <div class="pasuk" id="p29" onclick="playSingle(29)">[כט] וְזֶ֤ה לָכֶם֙ הַטָּמֵ֔א בַּשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָ֑רֶץ הַחֹ֥לֶד וְהָעַכְבָּ֖ר וְהַצָּ֥ב לְמִינֵֽהוּ׃</div>
-        <div class="pasuk" id="p30" onclick="playSingle(30)">[ל] וְהָאֲנָקָ֥ה וְהַכֹּ֖חַ וְהַלְּטָאָ֑ה וְהַחֹ֖מֶט וְהַתִּנְשָֽׁמֶת׃</div>
-        <div class="pasuk" id="p31" onclick="playSingle(31)">[לא] אֵ֛לֶּה הַטְּמֵאִ֥ים לָכֶ֖ם בְּכׇל־הַשָּׁ֑רֶץ כׇּל־הַנֹּגֵ֧עַ בָּהֶ֛ם בְּמֹתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p32" onclick="playSingle(32)">[לב] וְכֹ֣ל אֲשֶׁר־יִפֹּל־עָלָיו֩ מֵהֶ֨ם ׀ בְּמֹתָ֜ם יִטְמָ֗א מִכׇּל־כְּלִי־עֵץ֩ א֨וֹ בֶ֜גֶד אֽוֹ־עוֹר֙ א֣וֹ שָׂ֔ק כׇּל־כְּלִ֕י אֲשֶׁר־יֵעָשֶׂ֥ה מְלָאכָ֖ה בָּהֶ֑ם בַּמַּ֧יִם יוּבָ֛א וְטָמֵ֥א עַד־הָעֶ֖רֶב וְטָהֵֽר׃</div>
-        <div class="pasuk" id="p33" onclick="playSingle(33)">[לג] וְכׇל־כְּלִי־חֶ֔רֶשׂ אֲשֶׁר־יִפֹּ֥ל מֵהֶם אֶל־תּוֹכ֑וֹ כֹּ֥ל אֲשֶׁר־בְּתוֹכ֖וֹ יִטְמָ֥א וְאֹת֥וֹ תִשְׁבֹּֽרוּ׃</div>
-        <div class="pasuk" id="p34" onclick="playSingle(34)">[לד] מִכׇּל־הָאֹ֜כֶל אֲשֶׁ֣ר יֵאָכֵ֗ל אֲשֶׁ֨ר יָב֥וֹא עָלָ֛יו מַ֖יִם יִטְמָ֑א וְכׇל־מַשְׁקֶה֙ אֲשֶׁ֣ר יִשָּׁתֶ֔ה בְּכׇל־כְּלִ֖י יִטְמָֽא׃</div>
-        <div class="pasuk" id="p35" onclick="playSingle(35)">[לה] וְכֹ֧ל אֲשֶׁר־יִפֹּל־מִנִּבְלָתָ֥ם עָלָ֖יו יִטְמָ֑א תַּנּ֧וּר וְכִירַ֛יִם יֻתָּ֖ץ טְמֵאִ֥ים הֵם וּטְמֵאִ֥ים יִהְי֥וּ לָכֶֽם׃</div>
-        <div class="pasuk" id="p36" onclick="playSingle(36)">[לו] אַ֣ךְ מַעְיָ֥ן וּב֛וֹר מִקְוֵה־מַ֖יִם יִהְיֶ֣ה טָה֑וֹר וְנֹגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָֽא׃</div>
-        <div class="pasuk" id="p37" onclick="playSingle(37)">[לז] וְכִ֥י יִפֹּ֛ל מִנִּבְלָתָ֖ם עַל־כׇּל־זֶ֥רַע זֵר֖וּעַ אֲשֶׁ֥ר יִזָּרֵ֑עַ טָה֥וֹר הֽוּא׃</div>
-        <div class="pasuk" id="p38" onclick="playSingle(38)">[לח] וְכִ֤י יֻתַּן־מַ֙יִם֙ עַל־זֶ֔רַע וְנָפַ֥ל מִנִּבְלָתָ֖ם עָלָ֑יו טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
-        <div class="pasuk" id="p39" onclick="playSingle(39)">[לט] וְכִ֤י יָמָוּת֙ מִן־הַבְּהֵמָ֔ה אֲשֶׁר־הִ֥יא לָכֶ֖ם לְאָכְלָ֑ה הַנֹּגֵ֥עַ בְּנִבְלָתָ֖הּ יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p40" onclick="playSingle(40)">[מ] וְהָאֹכֵל֙ מִנִּבְלָתָהּ יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָֽרֶב וְהַנֹּשֵׂא֙ אֶת־נִבְלָתָ֔הּ יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָֽרֶב׃</div>
-        <div class="pasuk" id="p41" onclick="playSingle(41)">[מא] וְכׇל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָ֑רֶץ שֶׁ֥קֶץ ה֖וּא לֹ֥א יֵאָכֵֽל׃</div>
-        <div class="pasuk" id="p42" onclick="playSingle(42)">[מב] כֹּל֩ הוֹלֵ֨ךְ עַל־גָּח֜וֹן וְכֹ֣ל ׀ הוֹלֵ֣ךְ עַל־אַרְבַּ֗ע עַ֚ד כׇּל־מַרְבֵּ֣ה רַגְלַ֔יִם לְכׇל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָֽרֶץ לֹ֥א תֹאכְלוּם֙ כִּֽי־שֶׁ֥קֶץ הֵֽם׃</div>
-        <div class="pasuk" id="p43" onclick="playSingle(43)">[מג] אַל־תְּשַׁקְּצ֣וּ אֶת־נַפְשֹׁתֵיכֶ֔ם בְּכׇל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֑ץ וְלֹ֤א תִֽטַּמְּאוּ֙ בָּהֶ֔ם וְנִטְמֵתֶ֖ם בָּֽם׃</div>
-        <div class="pasuk" id="p44" onclick="playSingle(44)">[מד] כִּ֣י אֲנִ֣י יְהוָה֮ אֱלֹהֵיכֶם֒ וְהִתְקַדִּשְׁתֶּם֙ וִהְיִתֶ֣ם קְדֹשִׁ֔ים כִּ֥י קָד֖וֹשׁ אָ֑נִי וְלֹ֤א תְטַמְּאוּ֙ אֶת־נַפְשֹׁתֵיכֶ֔ם בְּכׇל־הַשֶּׁ֖רֶץ הָרֹמֵ֥שׂ עַל־הָאָֽרֶץ׃</div>
-        <div class="pasuk" id="p45" onclick="playSingle(45)">[מה] כִּ֣י ׀ אֲנִ֣י יְהוָ֗ה הַֽמַּעֲלֶ֤ה אֶתְכֶם֙ מֵאֶ֣רֶץ מִצְרַ֔יִם לִהְיֹ֥ת לָכֶ֖ם לֵאלֹהִ֑ים וִהְיִתֶ֥ם קְדֹשִׁ֖ים כִּ֥י קָד֖וֹשׁ אָֽנִי׃</div>
-        <div class="pasuk" id="p46" onclick="playSingle(46)">[מו] זֹ֣את תּוֹרַ֤ת הַבְּהֵמָה֙ וְהָע֔וֹף וְכֹל֙ נֶ֣פֶשׁ הַחַיָּ֔ה הָרֹמֶ֖שֶׂת בַּמָּ֑יִם וּלְכׇל־נֶ֖פֶשׁ הַשֹּׁרֶ֥צֶת עַל־הָאָֽרֶץ׃</div>
-        <div class="pasuk" id="p47" onclick="playSingle(47)">[מז] לְהַבְדִּ֕יל בֵּ֥ין הַטָּמֵ֖א וּבֵ֣ין הַטָּהֹ֑ר וּבֵ֤ין הַחַיָּה֙ הַנֶּאֱכֶ֔לֶת וּבֵין֙ הַחַיָּה֙ אֲשֶׁ֥ר לֹא־תֵאָכֵֽל׃</div>
+        <div class="pasuk" id="p1" onclick="playSingle(1)"><span class="num">א</span>וַיְדַבֵּ֧ר יְהוָ֛ה אֶל־מֹשֶׁ֥ה וְאֶֽל־אַהֲרֹ֖ן לֵאמֹ֥ר אֲלֵהֶֽם׃</div>
+        <div class="pasuk" id="p2" onclick="playSingle(2)"><span class="num">ב</span>דַּבְּר֛וּ אֶל־בְּנֵ֥י יִשְׂרָאֵ֖ל לֵאמֹ֑ר זֹ֤את הַֽחַיָּה֙ אֲשֶׁ֣ר תֹּֽאכְל֔וּ מִכָּל־הַבְּהֵמָ֖ה אֲשֶׁ֥ר עַל־הָאָֽרֶץ׃</div>
+        <div class="pasuk" id="p3" onclick="playSingle(3)"><span class="num">ג</span>כֹּ֣ל ׀ מַפְרֶ֣סֶת פַּרְסָ֗ה וְשֹׁסַ֤עַת שֶׁ֨סַע֙ פְּרָסֹ֔ת מַֽעֲלַ֥ת גֵּרָ֖ה בַּבְּהֵמָ֑ה אֹתָ֖הּ תֹּאכֵֽלוּ׃</div>
+        <div class="pasuk" id="p4" onclick="playSingle(4)"><span class="num">ד</span>אַ֤ךְ אֶת־זֶה֙ לֹ֣א תֹֽאכְל֔וּ מִֽמַּעֲלֵי֙ הַגֵּרָ֔ה וּמִמַּפְרִסֵ֖י הַפַּרְסָ֑ה אֶֽת־הַ֠גָּמָל כִּֽי־מַעֲלֵ֨ה גֵרָ֜ה ה֗וּא וּפַרְסָה֙ אֵינֶ֣נּוּ מַפְרִ֔יס טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p5" onclick="playSingle(5)"><span class="num">ה</span>וְאֶת־הַשָּׁפָ֗ן כִּֽי־מַעֲלֵ֤ה גֵרָה֙ ה֔וּא וּפַרְסָ֖ה לֹ֣א יַפְרִ֑יס טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p6" onclick="playSingle(6)"><span class="num">ו</span>וְאֶת־הָֽאַרְנֶ֗בֶת כִּֽי־מַעֲלַ֤ת גֵּרָה֙ הִ֔וא וּפַרְסָ֖ה לֹ֣א הִפְרִ֑יסָה טְמֵאָ֥ה הִ֖וא לָכֶֽם׃</div>
+        <div class="pasuk" id="p7" onclick="playSingle(7)"><span class="num">ז</span>וְאֶת־הַֽ֠חֲזִיר כִּֽי־מַפְרִ֨יס פַּרְסָ֜ה ה֗וּא וְשֹׁסַ֥ע שֶׁ֨סַע֙ פַּרְסָ֔ה וְה֖וּא גֵּרָ֣ה לֹֽא־יִגָּ֑ר טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p8" onclick="playSingle(8)"><span class="num">ח</span>מִבְּשָׂרָם֙ לֹ֣א תֹאכֵ֔לוּ וּבְנִבְלָתָ֖ם לֹ֣א תִגָּ֑עוּ טְמֵאִ֥ים הֵ֖ם לָכֶֽם׃</div>
+        <div class="pasuk" id="p9" onclick="playSingle(9)"><span class="num">ט</span>אֶת־זֶה֙ תֹּֽאכְל֔וּ מִכֹּ֖ל אֲשֶׁ֣ר בַּמָּ֑יִם כֹּ֣ל אֲשֶׁר־לוֹ֩ סְנַפִּ֨יר וְקַשְׂקֶ֜שֶׂת בַּמַּ֗יִם בַּיַּמִּ֛ים וּבַנְּחָלִ֖ים אֹתָ֥ם תֹּאכֵֽלוּ׃</div>
+        <div class="pasuk" id="p10" onclick="playSingle(10)"><span class="num">י</span>וְכֹל֩ אֲשֶׁ֨ר אֵֽין־ל֜וֹ סְנַפִּ֣יר וְקַשְׂקֶ֗שֶׂת בַּיַּמִּים֙ וּבַנְּחָלִ֔ים מִכֹּל֙ שֶׁ֣רֶץ הַמַּ֔יִם וּמִכֹּ֛ל נֶ֥פֶשׁ הַֽחַיָּ֖ה אֲשֶׁ֣ר בַּמָּ֑יִם שֶׁ֥קֶץ הֵ֖ם לָכֶֽם׃</div>
+        <div class="pasuk" id="p11" onclick="playSingle(11)"><span class="num">יא</span>וְשֶׁ֖קֶץ יִֽהְי֣וּ לָכֶ֑ם מִבְּשָׂרָם֙ לֹ֣א תֹאכֵ֔לוּ וְאֶת־נִבְלָתָ֖ם תְּשַׁקֵּֽצוּ׃</div>
+        <div class="pasuk" id="p12" onclick="playSingle(12)"><span class="num">יב</span>כֹּ֣ל אֲשֶׁ֥ר אֵֽין־ל֛וֹ סְנַפִּ֥יר וְקַשְׂקֶ֖שֶׂת בַּמָּ֑יִם שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p13" onclick="playSingle(13)"><span class="num">יג</span>וְאֶת־אֵ֨לֶּה֙ תְּשַׁקְּצ֣וּ מִן־הָע֔וֹף לֹ֥א יֵאָֽכְל֖וּ שֶׁ֣קֶץ הֵ֑ם אֶת־הַנֶּ֨שֶׁר֙ וְאֶת־הַפֶּ֔רֶס וְאֵ֖ת הָֽעָזְנִיָּֽה׃</div>
+        <div class="pasuk" id="p14" onclick="playSingle(14)"><span class="num">יד</span>וְאֶ֨ת־הַדָּאָ֔ה וְאֶת־הָֽאַיָּ֖ה לְמִינָֽהּ׃</div>
+        <div class="pasuk" id="p15" onclick="playSingle(15)"><span class="num">טו</span>אֵ֥ת כָּל־עֹרֵ֖ב לְמִינֽוֹ׃</div>
+        <div class="pasuk" id="p16" onclick="playSingle(16)"><span class="num">טז</span>וְאֵת֙ בַּ֣ת הַֽיַּעֲנָ֔ה וְאֶת־הַתַּחְמָ֖ס וְאֶת־הַשָּׁ֑חַף וְאֶת־הַנֵּ֖ץ לְמִינֵֽהוּ׃</div>
+        <div class="pasuk" id="p17" onclick="playSingle(17)"><span class="num">יז</span>וְאֶת־הַכּ֥וֹס וְאֶת־הַשָּׁלָ֖ךְ וְאֶת־הַיַּנְשֽׁוּף׃</div>
+        <div class="pasuk" id="p18" onclick="playSingle(18)"><span class="num">יח</span>וְאֶת־הַתִּנְשֶׁ֥מֶת וְאֶת־הַקָּאָ֖ת וְאֶת־הָֽרָחָֽם׃</div>
+        <div class="pasuk" id="p19" onclick="playSingle(19)"><span class="num">יט</span>וְאֵת֙ הַֽחֲסִידָ֔ה הָֽאֲנָפָ֖ה לְמִינָ֑הּ וְאֶת־הַדּֽוּכִיפַ֖ת וְאֶת־הָֽעֲטַלֵּֽף׃</div>
+        <div class="pasuk" id="p20" onclick="playSingle(20)"><span class="num">כ</span>כֹּ֚ל שֶׁ֣רֶץ הָע֔וֹף הַֽהֹלֵ֖ךְ עַל־אַרְבַּ֑ע שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p21" onclick="playSingle(21)"><span class="num">כא</span>אַ֤ךְ אֶת־זֶה֙ תֹּֽאכְל֔וּ מִכֹּל֙ שֶׁ֣רֶץ הָע֔וֹף הַֽהֹלֵ֖ךְ עַל־אַרְבַּ֑ע אֲשֶׁר־לא ל֤וֹ כְרָעַ֨יִם֙ מִמַּ֣עַל לְרַגְלָ֔יו לְנַתֵּ֥ר בָּהֵ֖ן עַל־הָאָֽרֶץ׃</div>
+        <div class="pasuk" id="p22" onclick="playSingle(22)"><span class="num">כב</span>אֶת־אֵ֤לֶּה מֵהֶם֙ תֹּאכֵ֔לוּ אֶת־הָֽאַרְבֶּ֣ה לְמִינ֔וֹ וְאֶת־הַסָּלְעָ֖ם לְמִינֵ֑הוּ וְאֶת־הַֽחַרְגֹּ֣ל לְמִינֵ֔הוּ וְאֶת־הֶֽחָגָ֖ב לְמִינֵֽהוּ׃</div>
+        <div class="pasuk" id="p23" onclick="playSingle(23)"><span class="num">כג</span>וְכֹל֙ שֶׁ֣רֶץ הָע֔וֹף אֲשֶׁר־ל֖וֹ אַרְבַּ֣ע רַגְלָ֑יִם שֶׁ֥קֶץ ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p24" onclick="playSingle(24)"><span class="num">כד</span>וּלְאֵ֖לֶּה תִּטַּמָּ֑אוּ כָּל־הַנֹּגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p25" onclick="playSingle(25)"><span class="num">כה</span>וְכָל־הַנֹּשֵׂ֖א מִנִּבְלָתָ֑ם יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p26" onclick="playSingle(26)"><span class="num">כו</span>לְֽכָל־הַבְּהֵמָ֡ה אֲשֶׁ֣ר הִוא֩ מַפְרֶ֨סֶת פַּרְסָ֜ה וְשֶׁ֣סַע ׀ אֵינֶ֣נָּה שֹׁסַ֗עַת וְגֵרָה֙ אֵינֶ֣נָּה מַֽעֲלָ֔ה טְמֵאִ֥ים הֵ֖ם לָכֶ֑ם כָּל־הַנֹּגֵ֥עַ בָּהֶ֖ם יִטְמָֽא׃</div>
+        <div class="pasuk" id="p27" onclick="playSingle(27)"><span class="num">כז</span>וְכֹ֣ל ׀ הוֹלֵ֣ךְ עַל־כַּפָּ֗יו בְּכָל־הַֽחַיָּה֙ הַֽהֹלֶ֣כֶת עַל־אַרְבַּע טְמֵאִ֥ים הֵ֖ם לָכֶ֑ם כָּל־הַנֹּגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p28" onclick="playSingle(28)"><span class="num">כח</span>וְהַנֹּשֵׂא֙ אֶת־נִבְלָתָ֔ם יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֣א עַד־הָעָ֑רֶב טְמֵאִ֥ים הֵ֖מָּה לָכֶֽם׃</div>
+        <div class="pasuk" id="p29" onclick="playSingle(29)"><span class="num">כט</span>וְזֶ֤ה לָכֶם֙ הַטָּמֵ֔א בַּשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָ֑רֶץ הַחֹ֥לֶד וְהָֽעַכְבָּ֖ר וְהַצָּ֥ב לְמִינֵֽהוּ׃</div>
+        <div class="pasuk" id="p30" onclick="playSingle(30)"><span class="num">ל</span>וְהָֽאֲנָקָ֥ה וְהַכֹּ֖חַ וְהַלְּטָאָ֑ה וְהַחֹ֖מֶט וְהַתִּנשָֽׁמֶת׃</div>
+        <div class="pasuk" id="p31" onclick="playSingle(31)"><span class="num">לא</span>אֵ֛לֶּה הַטְּמֵאִ֥ים לָכֶ֖ם בְּכָל־הַשָּׁ֑רֶץ כָּל־הַנֹּגֵ֧עַ בָּהֶ֛ם בְּמֹתָ֖ם יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p32" onclick="playSingle(32)"><span class="num">לב</span>וְכֹ֣ל אֲשֶׁר־יִפֹּל־עָלָיו֩ מֵהֶ֨ם ׀ בְּמֹתָ֜ם יִטְמָ֗א מִכָּל־כְּלִי־עֵץ֙ א֣וֹ בֶ֤גֶד אוֹ־עוֹר֙ א֣וֹ שָׂ֔ק כָּל־כְּלִ֕י אֲשֶׁר־יֵֽעָשֶׂ֥ה מְלָאכָ֖ה בָּהֶ֑ם בַּמַּ֧יִם יוּבָ֛א וְטָמֵ֥א עַד־הָעֶ֖רֶב וְטָהֵֽר׃</div>
+        <div class="pasuk" id="p33" onclick="playSingle(33)"><span class="num">לג</span>וְכָ֨ל־כְּלִי־חֶ֔רֶשׂ אֲשֶׁר־יִפֹּ֥ל מֵהֶ֖ם אֶל־תּוֹכ֑וֹ כֹּ֣ל אֲשֶׁ֧ר בְּתוֹכ֛וֹ יִטְמָ֖א וְאֹת֥וֹ תִשְׁבֹּֽרוּ׃</div>
+        <div class="pasuk" id="p34" onclick="playSingle(34)"><span class="num">לד</span>מִכָּל־הָאֹ֜כֶל אֲשֶׁר יֵֽאָכֵ֗ל אֲשֶׁ֨ר יָבֹוא עָלָ֛יו מַ֖יִם יִטְמָ֑א וְכָל־מַשְׁקֶה֙ אֲשֶׁר יִשָּׁתֶ֔ה בְּכָל־כְּלִ֖י יִטְמָֽא׃</div>
+        <div class="pasuk" id="p35" onclick="playSingle(35)"><span class="num">לה</span>וְ֠כֹל אֲשֶׁר־יִפֹּ֨ל מִנִּבְלָתָ֥ם ׀ עָלָיו֮ יִטְמָא֒ תַּנּ֧וּר וְכִירַ֛יִם יֻתָּ֖ץ טְמֵאִ֣ים הֵ֑ם וּטְמֵאִ֖ים יִֽהְי֥וּ לָכֶֽם׃</div>
+        <div class="pasuk" id="p36" onclick="playSingle(36)"><span class="num">לו</span>אַ֣ךְ מַעְיָ֥ן וּבֹור מִקְוֵה־מַ֖יִם יִֽהְיֶ֣ה טָה֑וֹר וְנֹגֵ֥עַ בְּנִבְלָתָ֖ם יִטְמָֽא׃</div>
+        <div class="pasuk" id="p37" onclick="playSingle(37)"><span class="num">לז</span>וְכִ֤י יִפֹּל֙ מִנִּבְלָתָ֔ם עַל־כָּל־זֶ֥רַע זֵרוּעַ אֲשֶׁר יִזָּרֵ֑עַ טָה֖וֹר הֽוּא׃</div>
+        <div class="pasuk" id="p38" onclick="playSingle(38)"><span class="num">לח</span>וְכִ֤י יֻתַּן־מַ֨יִם֙ עַל־זֶ֔רַע וְנָפַ֥ל מִנִּבְלָתָ֖ם עָלָ֑יו טָמֵ֥א ה֖וּא לָכֶֽם׃</div>
+        <div class="pasuk" id="p39" onclick="playSingle(39)"><span class="num">לט</span>וְכִ֤י יָמוּת֙ מִן־הַבְּהֵמָ֔ה אֲשֶׁר־הִ֥יא לָכֶ֖ם לְאָכְלָ֑ה הַנֹּגֵ֥עַ בְּנִבְלָתָ֖הּ יִטְמָ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p40" onclick="playSingle(40)"><span class="num">מ</span>וְהָֽאֹכֵל֙ מִנִּבְלָתָ֔הּ יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֣א עַד־הָעָ֑רֶב וְהַנֹּשֵׂא֙ אֶת־נִבְלָתָ֔הּ יְכַבֵּ֥ס בְּגָדָ֖יו וְטָמֵ֥א עַד־הָעָֽרֶב׃</div>
+        <div class="pasuk" id="p41" onclick="playSingle(41)"><span class="num">מא</span>וְכָל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָ֑רֶץ שֶׁ֥קֶץ ה֖וּא לֹ֥א יֵֽאָכֵֽל׃</div>
+        <div class="pasuk" id="p42" onclick="playSingle(42)"><span class="num">מב</span>כֹּל֩ הוֹלֵ֨ךְ עַל־גָּח֜וֹן וְכֹ֣ל ׀ הוֹלֵךְ עַל־אַרְבַּ֗ע עַ֚ד כָּל־מַרְבֵּ֣ה רַגְלַ֔יִם לְכָל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֣ץ עַל־הָאָֽרֶץ לֹ֥א תֹֽאכְלוּם כִּי־שֶׁ֥קֶץ הֵֽם׃</div>
+        <div class="pasuk" id="p43" onclick="playSingle(43)"><span class="num">מג</span>אַל־תְּשַׁקְּצוּ֙ אֶת־נַפְשֹׁ֣תֵיכֶ֔ם בְּכָל־הַשֶּׁ֖רֶץ הַשֹּׁרֵ֑ץ וְלֹ֤א תִֽטַּמְּאוּ֙ בָּהֶ֔ם וְנִטְמֵתֶ֖ם בָּֽם׃</div>
+        <div class="pasuk" id="p44" onclick="playSingle(44)"><span class="num">מד</span>כִּ֣י אֲנִ֣י יְהוָה֮ אֱלֹֽהֵיכֶם֒ וְהִתְקַדִּשְׁתֶּם֙ וִֽהְיִיתֶ֣ם קְדֹשִׁ֔ים כִּ֥י קָד֖וֹשׁ אָ֑נִי וְלֹ֤א תְטַמְּאוּ֙ אֶת־נַפְשֹׁ֣תֵיכֶ֔ם בְּכָל־הַשֶּׁ֖רֶץ הָֽרֹמֵ֥שׂ עַל־הָאָֽרֶץ׃</div>
+        <div class="pasuk" id="p45" onclick="playSingle(45)"><span class="num">מה</span>כִּ֣י ׀ אֲנִ֣י יְהוָ֗ה הַֽמַּעֲלֶ֤ה אֶתְכֶם֙ מֵאֶ֣רֶץ מִצְרַ֔יִם לִֽהְיֹ֥ת לָכֶ֖ם לֵֽאלֹהִ֑ים וִֽהְיִיתֶ֣ם קְדֹשִׁ֔ים כִּ֥י קָד֖וֹשׁ אָֽנִי׃</div>
+        <div class="pasuk" id="p46" onclick="playSingle(46)"><span class="num">מו</span>זֹ֣את תּוֹרַ֤ת הַבְּהֵמָה֙ וְהָע֔וֹף וְכֹל֙ נֶ֣פֶשׁ הַֽחַיָּ֔ה הָֽרֹמֶ֖שֶׂת בַּמָּ֑יִם וּלְכָל־נֶ֖פֶשׁ הַשֹּׁרֶ֥צֶת עַל־הָאָֽרֶץ׃</div>
+        <div class="pasuk" id="p47" onclick="playSingle(47)"><span class="num">מז</span>לְהַבְדִּ֕יל בֵּ֥ין הַטָּמֵ֖א וּבֵ֣ין הַטָּהֹ֑ר וּבֵ֤ין הַֽחַיָּה֙ הַֽנֶּאֱכֶ֔לֶת וּבֵין֙ הַֽחַיָּה֙ אֲשֶׁ֖ר לֹ֥א תֵֽאָכֵֽל׃</div>
     </div>
 </div>
 <audio id="audioPlayer"></audio>
