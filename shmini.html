@@ -76,23 +76,62 @@
 </div>
 <audio id="audioPlayer"></audio>
 <script>
-    const audio = document.getElementById('audioPlayer');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioCache = {}; // "מחסן" להקלטות טעונות מראש
     let curr = 0, end = 0, isAuto = false;
+
+    // פונקציה שטוענת את הקובץ לזיכרון מראש
+    function preloadAudio(idx) {
+        if (!audioCache[idx]) {
+            const a = new Audio(idx + '.m4a');
+            a.preload = 'auto';
+            audioCache[idx] = a;
+        }
+    }
+
+    // טעינה מראש של כל הקבצים שקיימים כרגע (1 עד 4)
+    // ככל שתעלה יותר קבצים, תוכל להגדיל את המספר כאן
+    for (let i = 1; i <= 4; i++) {
+        preloadAudio(i);
+    }
+
     function playPasuk(idx) {
         document.querySelectorAll('.pasuk').forEach(p => p.classList.remove('playing'));
         curr = idx;
         const p = document.getElementById('p' + idx);
+        
         if (p) {
             p.classList.add('playing');
             p.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            audio.src = idx + '.m4a';
-            audio.play().catch(e => console.log("Missing: " + idx + ".m4a"));
+            
+            // שימוש בקובץ המוכן מהמחסן לניגון מיידי
+            if (audioCache[idx]) {
+                audioPlayer.src = audioCache[idx].src;
+                audioPlayer.play().catch(e => console.log("Error playing: " + idx));
+            } else {
+                // גיבוי למקרה שהקובץ עוד לא נטען
+                audioPlayer.src = idx + '.m4a';
+                audioPlayer.play();
+            }
         }
+        
+        // בונוס: טעינה מראש של הפסוק הבא כדי שיהיה מוכן
+        if (idx < 47) preloadAudio(idx + 1);
     }
+
     function playSingle(idx) { isAuto = false; playPasuk(idx); }
     function playRange(s, e) { end = e; isAuto = true; playPasuk(s); }
-    audio.onended = () => { if (isAuto && curr < end) playPasuk(curr + 1); else stopAll(); };
-    function stopAll() { audio.pause(); isAuto = false; document.querySelectorAll('.pasuk').forEach(p => p.classList.remove('playing')); }
+    
+    audioPlayer.onended = () => { 
+        if (isAuto && curr < end) playPasuk(curr + 1); 
+        else stopAll(); 
+    };
+
+    function stopAll() { 
+        audioPlayer.pause(); 
+        isAuto = false; 
+        document.querySelectorAll('.pasuk').forEach(p => p.classList.remove('playing')); 
+    }
 </script>
 </body>
 </html>
